@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://2lpix6cnmvix"]
+[gd_scene load_steps=3 format=3 uid="uid://2lpix6cnmvix"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87u0m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6khc"]
+font_size = 40
+font_color = Color(0.350967, 0.457516, 1, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -15,7 +21,10 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -375.0
-offset_top = 30.0
+offset_top = 15.0
 offset_right = 375.0
-offset_bottom = 110.0
+offset_bottom = 95.0
 grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_87u0m")
+label_settings = SubResource("LabelSettings_y6khc")
+vertical_alignment = 1

@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://hhfrjij4b1av"]
+[gd_scene load_steps=2 format=3 uid="uid://hhfrjij4b1av"]
+
+[ext_resource type="PackedScene" uid="uid://2lpix6cnmvix" path="res://screen.tscn" id="1_5h0jh"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -6,3 +8,5 @@
 position = Vector2i(0, 36)
 size = Vector2i(800, 1000)
 borderless = true
+
+[node name="Control" parent="main" instance=ExtResource("1_5h0jh")]
