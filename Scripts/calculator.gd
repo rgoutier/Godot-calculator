@@ -9,6 +9,7 @@ var first_number : float
 var second_number : float
 var operator := ""
 var decimal_allowed := true
+var on_computation_line := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +26,7 @@ func _number_buttons(btn):
 		work_area.text += btn.name
 
 
-func _on_equal_btn_pressed():
-	has_been_used = false
+func _computation():
 	var result : float
 	second_number = work_area.text.to_float()
 	match operator:
@@ -38,18 +38,33 @@ func _on_equal_btn_pressed():
 			result = first_number * second_number
 		"/":
 			result = first_number / second_number
-
-	prev_work_area.text = str(first_number) + " " + operator + " " + str(second_number)	
+	prev_work_area.text = str(first_number) + " " + operator + " " + str(second_number) + " ="	
 	work_area.text = str(snapped(result, 0.0000000001))
+
+
+func _on_equal_btn_pressed():
+	has_been_used = false
+	on_computation_line = false
+	_computation()
+
 
 func _on_addition_btn_pressed():
 	has_been_used = false
+	decimal_allowed = true
+	if on_computation_line:
+		_computation()
+	on_computation_line = true
 	first_number = work_area.text.to_float()
 	operator = "+"
 	prev_work_area.text = str(first_number) + " " + operator
+	
 
 func _on_substraction_btn_pressed():
 	has_been_used = false
+	decimal_allowed = true
+	if on_computation_line:
+		_computation()
+	on_computation_line = true
 	first_number = work_area.text.to_float()
 	operator = "-"
 	prev_work_area.text = str(first_number) + " " + operator
@@ -57,6 +72,10 @@ func _on_substraction_btn_pressed():
 
 func _on_multiplication_btn_pressed():
 	has_been_used = false
+	decimal_allowed = true
+	if on_computation_line:
+		_computation()
+	on_computation_line = true
 	first_number = work_area.text.to_float()
 	operator = "x"
 	prev_work_area.text = str(first_number) + " " + operator
@@ -64,6 +83,10 @@ func _on_multiplication_btn_pressed():
 
 func _on_divide_btn_pressed():
 	has_been_used = false
+	decimal_allowed = true
+	if on_computation_line:
+		_computation()
+	on_computation_line = true
 	first_number = work_area.text.to_float()
 	operator = "/"
 	prev_work_area.text = str(first_number) + " " + operator
@@ -95,6 +118,7 @@ func _on_clear_btn_pressed():
 	prev_work_area.text = ""
 	work_area.text = "0"
 	decimal_allowed = true
+	on_computation_line = false
 
 
 func _on_decimal_btn_pressed():
