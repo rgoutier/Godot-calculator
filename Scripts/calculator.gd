@@ -29,6 +29,7 @@ func _number_buttons(btn):
 func _computation():
 	var result : float
 	second_number = work_area.text.to_float()
+	prev_work_area.text = str(first_number) + " " + operator + " " + str(second_number) + " ="
 	match operator:
 		"+":
 			result = first_number + second_number
@@ -38,7 +39,10 @@ func _computation():
 			result = first_number * second_number
 		"/":
 			result = first_number / second_number
-	prev_work_area.text = str(first_number) + " " + operator + " " + str(second_number) + " ="	
+		_:
+			result = work_area.text.to_float()
+			prev_work_area.text = str(result) + " ="
+	
 	work_area.text = str(snapped(result, 0.0000000001))
 
 
